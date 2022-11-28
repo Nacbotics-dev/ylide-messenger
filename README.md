@@ -6,6 +6,6 @@ A simple blockchain messaging app on eversacle/fantom
 
 install dependecies
 
-*npm insall*
+*npm install*
 
 *npm run dev*
