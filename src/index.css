@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: Lexend Exa;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+.input-group {
+    position: relative;
+    display: grid;
+    width: 100%;
+}
+
+
+.input-label {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transform: translate(10px, 10px);
+    transition: transform .25s;
+    color: #0aaf81;
+}
+
+.input:focus+.input-label,
+.input:valid+.input-label {
+    transform: translate(10px, -14px);
+    color: #0aaf81;
+    height: 28px;
+}
+
+
+.form-box-shadow{
+  box-shadow:
+  0.3px 1.3px 1.2px rgba(0, 0, 0, 0.017),
+  0.7px 2.9px 2.7px rgba(0, 0, 0, 0.025),
+  1.2px 4.8px 4.6px rgba(0, 0, 0, 0.031),
+  1.8px 7.2px 6.9px rgba(0, 0, 0, 0.035),
+  2.6px 10.4px 10px rgba(0, 0, 0, 0.04),
+  3.7px 14.7px 14.2px rgba(0, 0, 0, 0.045),
+  5.3px 20.9px 20.1px rgba(0, 0, 0, 0.049),
+  7.7px 30.3px 29.2px rgba(0, 0, 0, 0.055),
+  11.8px 46.7px 45px rgba(0, 0, 0, 0.063),
+  21px 83px 80px rgba(0, 0, 0, 0.08);
+
+}
+
+.form-glass-morph{
+  background: rgb(255 255 255 / 44%);
+    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 37%);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  height: 0px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  padding: 0px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: blue;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  /* border: 3px solid orange;  creates padding around scroll thumb */
+  -webkit-appearance: none;
+  background-color: transparent;
+  }
