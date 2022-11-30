@@ -7,7 +7,7 @@ import { MessageContext } from '../../Context/MessengerContext';
 import EmptyChat from './ChatDashboardComponents/ChatPanel/EmptyChat';
 import ActiveChat from './ChatDashboardComponents/ChatPanel/ActiveChat';
 import ChatMembersList from './ChatDashboardComponents/ChatPanel/ChatMembersList';
-
+import WheelLoader from '../LoadingBar/WheelLoader';
 
 
 function ChatDashboard({setAccountsState}) {
@@ -129,59 +129,67 @@ function ChatDashboard({setAccountsState}) {
 			}}>
 
                 <ChatHeader/>
-                <div className='flex items-center w-full h-full pb-5'>
+                {
+                    loadAccountState && <WheelLoader/>
+                }
+                {
+                    !loadAccountState &&
+               
+                    <div className='flex items-center w-full h-full pb-5'>
 
-                
-                    <div className='flex relative flex-col bg-[#f5f3f3] items-center justify-between w-full h-full overflow-hidden overflow-y-scroll md:w-1/2'>
-                        
-                        <ChatMembersList chatMembers={chatMembers}/>
-                        
+                    
+                        <div className='flex relative flex-col bg-[#f5f3f3] items-center justify-between w-full h-full overflow-hidden overflow-y-scroll md:w-1/2'>
+                            
+                            <ChatMembersList chatMembers={chatMembers}/>
+                            
 
-                        <div className='absolute bottom-0 w-full'>
-                            <div onClick={e=>{setShowContactForm(!showContactForm)}} className='bg-[#0aaf81] fixed bottom-0  mb-16 ml-44 flex space-x-2 max-w-[160px] flex-nowrap w-full cursor-pointer p-5 rounded-2xl 2xl:ml-[16%]'>
-                                <h3 className='text-base font-semibold text-[#f5f3f3]'>New Chat</h3>
-                                <svg className="w-6 h-6" fill="none" stroke="#f5f3f3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                            <div className='absolute bottom-0 w-full'>
+                                <div onClick={e=>{setShowContactForm(!showContactForm)}} className='bg-[#0aaf81] fixed bottom-0  mb-16 ml-44 flex space-x-2 max-w-[160px] flex-nowrap w-full cursor-pointer p-5 rounded-2xl 2xl:ml-[16%]'>
+                                    <h3 className='text-base font-semibold text-[#f5f3f3]'>New Chat</h3>
+                                    <svg className="w-6 h-6" fill="none" stroke="#f5f3f3" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                                </div>
                             </div>
+
+                            {
+                                showContactForm &&
+                            
+                                <div className='absolute bottom-0 w-full'>
+
+                                    <form className='fixed bottom-0 mb-16 space-x-2 max-w-[350px] w-full cursor-pointer rounded-2xl ml-0'>
+                                        <div className='bg-[#d9fbee] flex flex-col space-y-5 rounded-t-2xl p-5'>
+                                            <svg onClick={e=>{setShowContactForm(!showContactForm)}} className="w-6 h-6 self-end" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+
+                                            <div className="input-group w-full h-14">
+                                                <input type="text" autoComplete='new-username' name='username' required className='w-full h-full p-2 text-black bg-transparent border-t-2 border-b-2 outline-none appearance-none border-t-transparent border-b-teal-500 input'/>
+                                                <label className="input-label font-medium text-base">Username</label>
+                                            </div>
+
+                                            <div className="input-group w-full h-14">
+                                                <input type="text" autoComplete='new-address' name='address' required className='w-full h-full p-2 text-black bg-transparent border-t-2 border-b-2 outline-none appearance-none border-t-transparent border-b-teal-500 input'/>
+                                                <label className="input-label font-medium text-base">Contact Address</label>
+                                            </div>
+
+                                            <div onClick={onSubmit} className='w-full h-14'>
+                                                <button className='bg-[#0aaf81] w-full h-full font-medium text-base rounded-2xl text-[#edfbf7]'>Add Contact</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+
                         </div>
 
-                        {
-                            showContactForm &&
-                        
-                            <div className='absolute bottom-0 w-full'>
-
-                                <form className='fixed bottom-0 mb-16 space-x-2 max-w-[350px] w-full cursor-pointer rounded-2xl ml-0'>
-                                    <div className='bg-[#d9fbee] flex flex-col space-y-5 rounded-t-2xl p-5'>
-                                        <svg onClick={e=>{setShowContactForm(!showContactForm)}} className="w-6 h-6 self-end" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-
-                                        <div className="input-group w-full h-14">
-                                            <input type="text" autoComplete='new-username' name='username' required className='w-full h-full p-2 text-black bg-transparent border-t-2 border-b-2 outline-none appearance-none border-t-transparent border-b-teal-500 input'/>
-                                            <label className="input-label font-medium text-base">Username</label>
-                                        </div>
-
-                                        <div className="input-group w-full h-14">
-                                            <input type="text" autoComplete='new-address' name='address' required className='w-full h-full p-2 text-black bg-transparent border-t-2 border-b-2 outline-none appearance-none border-t-transparent border-b-teal-500 input'/>
-                                            <label className="input-label font-medium text-base">Contact Address</label>
-                                        </div>
-
-                                        <div onClick={onSubmit} className='w-full h-14'>
-                                            <button className='bg-[#0aaf81] w-full h-full font-medium text-base rounded-2xl text-[#edfbf7]'>Add Contact</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        }
+                        <div className='hidden w-full h-full md:block bg-[#f5f3f3]'>
+                            {
+                                currentChat?
+                                <ActiveChat/>
+                                :<EmptyChat/>
+                            }
+                        </div>
 
                     </div>
 
-                    <div className='hidden w-full h-full md:block'>
-                        {
-                            currentChat?
-                            <ActiveChat/>
-                            :<EmptyChat/>
-                        }
-                    </div>
-
-                </div>
+                }
 
 			</MessageContext.Provider>
 

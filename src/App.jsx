@@ -27,7 +27,7 @@ Ylide.registerBlockchainFactory(evmFactories[EVMNetwork.ETHEREUM]);
 Ylide.registerBlockchainFactory(evmFactories[EVMNetwork.FANTOM]);
 Ylide.registerBlockchainFactory(everscaleBlockchainFactory);
 Ylide.registerWalletFactory(ethereumWalletFactory);
-Ylide.registerWalletFactory(everscaleWalletFactory);
+// Ylide.registerWalletFactory(everscaleWalletFactory);
 
 
 function App() {
@@ -106,7 +106,7 @@ function App() {
                                 w.blockchainGroup,
                                 w.wallet,
                                 {
-                                    dev: false, //true,
+                                    dev: true, //true,
                                     onNetworkSwitchRequest: async (
                                         reason,
                                         currentNetwork,
@@ -134,20 +134,6 @@ function App() {
     useEffect(()=>{
         setYlideInstance({ylide:ylide,readers:readers,wallets:wallets,keystore:keystore,keys:keys,accountsState:accountsState})
     },[wallets,accountsState])
-
-    useEffect(() => {
-        (async () => {
-            const list = Ylide.walletsList;
-            const result = [];
-            for (const { factory } of list) {
-                result.push({
-                    factory,
-                    isAvailable: await factory.isWalletAvailable(),
-                });
-            }
-            setWalletsList(result);
-        })();
-    }, []);
 
 
 	useEffect(() => {

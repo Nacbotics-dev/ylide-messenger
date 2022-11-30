@@ -7,21 +7,22 @@ function MessageHistory({msgList}) {
     const {address,wallet} = accounts?accounts[0]:null;
     return (
         <div className='flex flex-col items-center p-5 h-full overflow-hidden overflow-y-scroll'>
-            {
-                msgList.map((msg,index)=>
-                    <>
-                        {
-                            msg?.from === address?
-                            <SenderChatDiv key={Math.random()+msg.msg} message={msg.msg}/>
-                            :
-                            <ReceiverChatDiv key={Math.random()+msg.msg} message={msg.msg}/>
-                        }
-                        
-                    </>
-                )
-            }
+                {
+                    msgList.map((msg,index)=>
+                        <div key={index} className='w-full'>
+                            {
+                                msg?.from === address?
+                                <SenderChatDiv message={msg.msg}/>
+                                :
+                                <ReceiverChatDiv message={msg.msg}/>
+                            }
+                            
+                        </div>
+                    )
+                }
         </div>
     );
 }
+
 
 export default MessageHistory;
