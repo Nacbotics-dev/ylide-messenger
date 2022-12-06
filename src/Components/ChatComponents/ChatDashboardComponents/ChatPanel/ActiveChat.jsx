@@ -61,7 +61,7 @@ function ActiveChat(props) {
         [ylideInstance]
     );
 
-    console.log(msgList,'~~~~')
+    // console.log(msgList,'~~~~')
 
     const onSend = async() =>{
         const state = ylideInstance?.accountsState[accounts[0]?.address];
